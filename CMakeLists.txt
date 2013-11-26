@@ -44,16 +44,25 @@ else()
   ADD_DEFINITIONS("-DEUDAQ_PLATFORM=PF_LINUX")
 endif()
 
-# determine compiler type (32/64bit)
-if( CMAKE_SIZEOF_VOID_P EQUAL 8 )
-    MESSAGE(STATUS "64 bits compiler detected" )
-    SET( EX_PLATFORM 64 )
-    SET( EX_PLATFORM_NAME "x64" )
-else( CMAKE_SIZEOF_VOID_P EQUAL 8 ) 
-    MESSAGE(STATUS "32 bits compiler detected" )
+if (WIN32) 
+
+	
+    MESSAGE(STATUS "for know only 32 bit is supported on Windows" )
     SET( EX_PLATFORM 32 )
     SET( EX_PLATFORM_NAME "x86" )
-endif( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+ELSE()
+
+	# determine compiler type (32/64bit)
+	if( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+		MESSAGE(STATUS "64 bits compiler detected" )
+		SET( EX_PLATFORM 64 )
+		SET( EX_PLATFORM_NAME "x64" )
+	else( CMAKE_SIZEOF_VOID_P EQUAL 8 ) 
+		MESSAGE(STATUS "32 bits compiler detected" )
+		SET( EX_PLATFORM 32 )
+		SET( EX_PLATFORM_NAME "x86" )
+	endif( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+ENDIF(WIN32)
 
 # compiler specific settings
 if (CMAKE_COMPILER_IS_GNUCC)

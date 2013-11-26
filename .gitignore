@@ -18,3 +18,5 @@ extern/tlufirmware
 
 build/
 buildqt/*
+extern/pthreads*
+bin/*

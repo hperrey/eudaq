@@ -26,7 +26,6 @@ else() #32bit
     SET(libname  libpthreadGC2.a )
   endif(MSVC)
 endif(${EX_PLATFORM} EQUAL 64)
-
 find_library(W32PTHREADS_LIBRARY NAMES ${libname}
   HINTS 
   "${W32PTHREADS}/lib/${EX_PLATFORM_NAME}" 
