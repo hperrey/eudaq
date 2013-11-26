@@ -50,6 +50,7 @@ if (WIN32)
     MESSAGE(STATUS "for know only 32 bit is supported on Windows" )
     SET( EX_PLATFORM 32 )
     SET( EX_PLATFORM_NAME "x86" )
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  /wd\"4996\"") #this compiler warnung is about that functions like fopen are unsafe.
 ELSE()
 
 	# determine compiler type (32/64bit)
