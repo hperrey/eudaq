@@ -20,3 +20,4 @@ build/
 buildqt/*
 extern/pthreads*
 bin/*
+extern/libusb*
