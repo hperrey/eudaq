@@ -171,7 +171,7 @@ namespace tlu {
     m_amask(0),
     m_omask(0),
     m_ipsel(0xff),
-   // m_handshakemode(0), //$$ change
+    m_handshakemode(0), //$$ change
     m_triggerint(0),
     m_inhibit(true),
     m_vetostatus(0),
@@ -193,7 +193,8 @@ namespace tlu {
     m_correctable_blockread_errors(0),
     m_uncorrectable_blockread_errors(0),
     m_usb_timeout_errors(0),
-    m_debug_level(0)
+    m_debug_level(0),
+	m_TriggerInformation(0)
   {
     errorhandleraborts(errorhandler == 0);
     for (int i = 0; i < TLU_TRIGGER_INPUTS; ++i) {
@@ -510,6 +511,11 @@ namespace tlu {
   void TLUController::SetTriggerInterval(unsigned millis) {
     m_triggerint = millis;
     if (m_addr) WriteRegister(m_addr->TLU_INTERNAL_TRIGGER_INTERVAL, m_triggerint);
+  }
+  void TLUController::SetTriggerInformation( unsigned TriggerInf )
+  {m_TriggerInformation=TriggerInf;
+
+  if (m_addr) WriteRegister(m_addr->TLU_WRITE_TRIGGER_BITS_MODE_ADDRESS, m_TriggerInformation);
   }
 
   unsigned char TLUController::GetAndMask() const {

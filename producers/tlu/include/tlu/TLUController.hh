@@ -96,6 +96,7 @@ namespace tlu {
     void SetStrobe(unsigned long period , unsigned long width);
     void SetEnableDUTVeto(unsigned char mask);
     void SetHandShakeMode(unsigned handshakemode);
+	void SetTriggerInformation( unsigned TriggerInf );
     bool SetPMTVcntl(unsigned value = PMT_VCNTL_DEFAULT);  // in mV, sets all PMT control voltages the same
     // in mV, TLU_PMTS entries expected, sets each PMT control voltage separately
     bool SetPMTVcntl(unsigned *values, double *gain_errors = NULL, double *offset_errors = NULL);
@@ -204,6 +205,7 @@ namespace tlu {
     unsigned m_usb_timeout_errors;
     unsigned m_debug_level;
     unsigned m_handshakemode;
+	unsigned m_TriggerInformation;
   };
 
   inline std::ostream & operator << (std::ostream & o, const TLUController & t) {
