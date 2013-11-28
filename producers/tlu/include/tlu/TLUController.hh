@@ -10,7 +10,8 @@
 #include "eudaq/Utils.hh"
 #include "eudaq/Time.hh"
 
-
+#define DO_NOT_USE_TRIGGER_INPUT_INFORMATION 0
+#define USE_TRIGGER_INPUT_INFORMATION 1 
 
 namespace tlu {
 
@@ -56,14 +57,25 @@ namespace tlu {
 
   class TLUEntry {
   public:
-    TLUEntry(unsigned long long t = 0, unsigned long e = 0)
-      : m_timestamp(t), m_eventnum(e) {}
+//     TLUEntry(unsigned long long t = 0, unsigned long e = 0)
+// 		: m_timestamp(t), m_eventnum(e) {}
+	TLUEntry(unsigned long long t = 0, unsigned long e = 0,unsigned trigger=0)
+		: m_timestamp(t), m_eventnum(e) {
+			for (int i=0;i<4;++i)
+			{
+				m_tirgger[i]=(trigger>>i)&1;
+			}
+			
+	
+	}
+
     unsigned long long Timestamp() const { return m_timestamp; }
     unsigned long Eventnum() const { return m_eventnum; }
     void Print(std::ostream & out = std::cout) const;
   private:
     unsigned long long m_timestamp;
     unsigned long m_eventnum;
+	bool m_tirgger[4];
   };
 
   struct TLUAddresses;
@@ -109,7 +121,7 @@ namespace tlu {
     unsigned char GetStrobeStatus() const;
     unsigned char GetDUTClockStatus() const;
     unsigned char GetEnableDUTVeto() const;
-
+	unsigned char getTriggerInformation() const;
     std::string GetStatusString() const;
     static int DUTnum(const std::string & name);
     void SelectDUT(const std::string & name, unsigned mask = 0xf, bool updateleds = true);
@@ -192,6 +204,7 @@ namespace tlu {
     unsigned long long m_timestamp;
     std::vector<TLUEntry> m_buffer;
     unsigned long long * m_oldbuf;
+	unsigned* m_triggerBuffer;
     unsigned long long m_working_buffer[NUM_TLU_BUFFERS][TLU_BUFFER_SIZE];
     unsigned m_scalers[TLU_TRIGGER_INPUTS];
     unsigned m_particles;

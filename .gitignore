@@ -21,3 +21,6 @@ buildqt/*
 extern/pthreads*
 bin/*
 extern/libusb*
+data/r*
+debug/*
+logs/2*

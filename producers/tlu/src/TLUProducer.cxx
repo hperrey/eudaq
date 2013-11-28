@@ -131,7 +131,9 @@ public:
 			m_tlu->SetOrMask(or_mask);
 			m_tlu->SetStrobe(strobe_period, strobe_width);
 			m_tlu->SetEnableDUTVeto(enable_dut_veto);
-
+			auto i=m_tlu->getTriggerInformation();
+			std::cout<<i<<std::endl;
+			m_tlu->SetTriggerInformation(USE_TRIGGER_INPUT_INFORMATION);
 			m_tlu->ResetTimestamp();
 
 			// by dhaas
