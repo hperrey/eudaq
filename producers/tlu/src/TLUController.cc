@@ -139,6 +139,18 @@ namespace tlu {
         << " = " << Timestamp2Seconds(m_timestamp);
   }
 
+  std::string TLUEntry::trigger2String()
+  {
+	
+		  std::string returnValue;
+		  for (auto i=0;i<TLU_TRIGGER_INPUTS;++i)
+		  {
+			  returnValue+= to_string(m_trigger[i]);
+		  }
+		  return returnValue;
+	 
+  }
+
     // Modified to allow for a flag to choose between a 0.0V->1.0V (vref = 0.5) or 0.0V->2.0V (vref = 1.0) range
     // The default is vref = 0.5, but the TLU can be modified by cutting the LC1 trace and strapping the LO1 pads
     //   on the PMT supply board (which changes the SET pin on the ADR130 chip, thus doubling the reference voltage).

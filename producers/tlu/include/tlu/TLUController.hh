@@ -63,7 +63,7 @@ namespace tlu {
 		: m_timestamp(t), m_eventnum(e) {
 			for (int i=0;i<4;++i)
 			{
-				m_tirgger[i]=(trigger>>i)&1;
+				m_trigger[i]=(trigger>>i)&1;
 			}
 			
 	
@@ -72,10 +72,11 @@ namespace tlu {
     unsigned long long Timestamp() const { return m_timestamp; }
     unsigned long Eventnum() const { return m_eventnum; }
     void Print(std::ostream & out = std::cout) const;
+	std::string trigger2String();
   private:
     unsigned long long m_timestamp;
     unsigned long m_eventnum;
-	bool m_tirgger[4];
+	bool m_trigger[TLU_TRIGGER_INPUTS];
   };
 
   struct TLUAddresses;
