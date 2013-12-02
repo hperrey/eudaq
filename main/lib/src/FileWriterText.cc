@@ -60,7 +60,7 @@ namespace eudaq {
 			firstEvent =true;
 			return;
 		} else if (devent.IsEORE()) {
-
+			return;
 		}
 		StandardEvent sev = eudaq::PluginManager::ConvertToStandard(devent);
 
@@ -74,7 +74,7 @@ namespace eudaq {
 
 			}else{
 
-				*m_out<<"i_time_stamp;  TLU_Trigger_input; id_plane; id_hit; id_x; id_y; i_tlu; i_run; i_event; DUT_time_stamp; TLU_event_nr"<<std::endl;
+				*m_out<<"i_time_stamp;  TLU_Trigger_input; id_plane; id_hit; id_x; id_y; i_tlu; i_run; i_event; DUT_time_stamp"<<std::endl;
 			}
 
 
@@ -109,8 +109,9 @@ namespace eudaq {
 					*m_out<<plane.TLUEvent()<<"; ";
 					*m_out<<sev.GetRunNumber()<<"; ";
 					*m_out<<sev.GetEventNumber()<<"; ";
+				//	auto test=sev.GetTag("DUT_time");
 					*m_out<<std::stoull(sev.GetTag("DUT_time"))<<"; ";
-					*m_out<<std::stoull(sev.GetTag("TLU_event_nr"));
+					//*m_out<<std::stoull(sev.GetTag("TLU_event_nr"));
 
 					*m_out<<std::endl;
 

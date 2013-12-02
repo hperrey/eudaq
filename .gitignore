@@ -24,3 +24,4 @@ extern/libusb*
 data/r*
 debug/*
 logs/2*
+release/*

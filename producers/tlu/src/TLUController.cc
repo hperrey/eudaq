@@ -143,8 +143,10 @@ namespace tlu {
   {
 	
 		  std::string returnValue;
-		  for (auto i=0;i<TLU_TRIGGER_INPUTS;++i)
+		  for (auto i=TLU_TRIGGER_INPUTS-1;i>=0;--i)
 		  {
+
+			  
 			  returnValue+= to_string(m_trigger[i]);
 		  }
 		  return returnValue;
