@@ -90,7 +90,11 @@ namespace eudaq {
 
 	eudaq::eudaqThread::~eudaqThread()
 	{
-		join();
+		if (joinable())
+		{
+			join();
+		}
+		
 
 	}
 

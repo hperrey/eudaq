@@ -18,6 +18,7 @@ using namespace tlu;
 ZESTSC1_ERROR_FUNC ZestSC1_ErrorHandler=NULL;  // Windows needs some parameters for this. i dont know where it will be called so we need to check it in future
 char *ZestSC1_ErrorStrings[]={"bla bla","blub"};
 #endif
+
 class TLUProducer: public eudaq::Producer {
 public:
 	TLUProducer(const std::string & runcontrol) :
@@ -63,6 +64,7 @@ public:
 					}
 					lasttime = t;
 					TLUEvent ev(m_run, m_ev, t);
+					ev.SetTag("trigger",m_tlu->GetEntry(i).trigger2String());
 					if (i == m_tlu->NumEntries() - 1) {
 						ev.SetTag("PARTICLES", to_string(m_tlu->GetParticles()));
 						for (int i = 0; i < TLU_TRIGGER_INPUTS; ++i) {
@@ -131,7 +133,9 @@ public:
 			m_tlu->SetOrMask(or_mask);
 			m_tlu->SetStrobe(strobe_period, strobe_width);
 			m_tlu->SetEnableDUTVeto(enable_dut_veto);
-
+			auto i=m_tlu->getTriggerInformation();
+			std::cout<<i<<std::endl;
+			m_tlu->SetTriggerInformation(USE_TRIGGER_INPUT_INFORMATION);
 			m_tlu->ResetTimestamp();
 
 			// by dhaas

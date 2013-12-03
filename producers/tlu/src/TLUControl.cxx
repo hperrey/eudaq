@@ -27,7 +27,7 @@ static const std::string TIME_FORMAT="%s.%3";
 #endif
 #ifdef WIN32
 ZESTSC1_ERROR_FUNC ZestSC1_ErrorHandler=NULL;  // set to NULL so that this function will not be called. it seems that this is only requiered on WINDOWS
-char *ZestSC1_ErrorStrings[]={"bla bla","blub"}; // needs to have some dummy strings but for now i dont know where they will be used again. 
+char *ZestSC1_ErrorStrings[]={"dummy","dummy1"}; // needs to have some dummy strings but for now i dont know where they will be used again. 
 #endif
 void ctrlchandler(int) {
   g_done += 1;
@@ -168,7 +168,7 @@ int main(int /*argc*/, char ** argv) {
     TLU.SetFirmware(fname.Value());
     TLU.Configure();
     //TLU.FullReset();
-   // TLU.SetHandShakeMode(hsmode.Value()); //$$ change
+    TLU.SetHandShakeMode(hsmode.Value()); //$$ change
     TLU.SetTriggerInterval(trigg.Value());
     if (ipsel.NumItems() > (unsigned)TLU_LEMO_DUTS) ipsel.Resize(TLU_LEMO_DUTS);
     for (size_t i = 0; i < ipsel.NumItems(); ++i) {

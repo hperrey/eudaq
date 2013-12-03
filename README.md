@@ -22,6 +22,8 @@ eudaq Data Acquisition Framework main repository
 ------------------
 - Install Qt4 or later
 - download and install the pthreads library (pre-build binary from ftp://sources.redhat.com/pub/pthreads-win32)
+For full description on how to set up the development environment for Windows, see section below.
+
 
 1.2. Specific Producers and Components
 --------------------------------------
@@ -45,11 +47,12 @@ will build main library, executables and gui (if Qt is found) and install into t
 cmake -DINSTALL_PREFIX=/usr/local ..
 
 
-The main library (libEUDAQ.so) is always build, while the rest of the
+The main library (libEUDAQ.so) is always built, while the rest of the
 package is optional. Defaults are to build the main executables and
 (if Qt is found) the GUI application. Disable this behavior by setting
 e.g. BUILD_main=OFF (disabling main executables) or enable
-e.g. producers using BUILD_tlu=ON to enable build of tlu producer and
+e.g. producers using BUILD_tlu=ON to enable setting up the
+configuration and compilation environment of tlu producer and
 executables.
 
 Example:
@@ -59,6 +62,34 @@ cmake -D BUILD_tlu=ON ..
 make install
 
 Variables thus set are cached in CMakeCache.txt and will again be taken into account at the next cmake run.
+
+
+2.1. Setting up Windows Development Environment
+-----------------------------------------------
+Download Qt4 or Qt5:
+Download and install the pthreads library (pre-build binary from ftp://sources.redhat.com/pub/pthreads-win32) into either c:\pthreads-w32 or ./extern/pthreads-w32
+Download Visual Studio Express Desktop (e.g. 2013 Version):
+(Warning: requires registration)
+
+Install both packages.
+Start the Visual Studio "Developer Command Prmopt" from the Start Menu entries vor Visual Studio (Tools subfolder) which opens a cmd.exe session with the necessary environment variables already set. Now execute the "qtenv2.bat" batch file in the Qt folder, e.g.
+C:\Qt\Qt5.1.1\5.1.1\msvc2012\bin\qtenv2.bat
+Replace "5.1.1" with the version string of your Qt installation.
+
+Now clone the EUDAQ repository (or download using GitHub) and enter the build directory on the prompt, e.g. by entering
+cd c:\Users\[username]\Documents\GitHub\eudaq\build
+
+Now enter
+cmake ..
+
+to generate the VS project files.
+
+Compile by calling
+
+MSBUILD.exe EUDAQ.sln /p:Configuration=Release
+
+
+Note: when using "Visual Express 2013" and pthreads-w32 2.9.1, you might require "Visual C++ Redistributable for Visual Studio 2012": download from http://www.microsoft.com/en-us/download/details.aspx?id=30679 and install.
 
 
 3. Development:

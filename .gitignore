@@ -6,6 +6,7 @@ lib/*
 
 # ignore emacs autosaves
 \#*#
+*~
 
 # ignore eclipse project files
 .project
@@ -15,3 +16,12 @@ lib/*
 extern/ZestSC1
 extern/tlufirmware
 
+build/
+buildqt/*
+extern/pthreads*
+bin/*
+extern/libusb*
+data/r*
+debug/*
+logs/2*
+release/*
