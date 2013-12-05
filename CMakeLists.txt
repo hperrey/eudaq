@@ -93,6 +93,9 @@ IF(BUILD_main)
   add_subdirectory(main/exe)
 ENDIF()
 
+# build python bindings
+add_subdirectory(main/python)
+
 # build native reader used for data conversion into LCIO
 IF(BUILD_nreader)
   add_subdirectory(nreader)
