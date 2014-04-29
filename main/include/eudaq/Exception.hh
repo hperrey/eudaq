@@ -80,6 +80,7 @@ namespace eudaq {
   EUDAQ_EXCEPTION(FileWriteException);
   EUDAQ_EXCEPTION(FileFormatException);
   EUDAQ_EXCEPTION(SyncException);
+  EUDAQ_EXCEPTION(MutexLockException);
   EUDAQ_EXCEPTION(CommunicationException);
   EUDAQ_EXCEPTIONX(BusError, CommunicationException);
 
