@@ -8,6 +8,7 @@
 #include "eudaq/Mutex.hh"
 #include "eudaq/Exception.hh"
 #include "eudaq/BufferSerializer.hh"
+#include "eudaq/Queue.hh"
 #include <string>
 #include <queue>
 #include <iosfwd>
@@ -184,6 +185,7 @@ namespace eudaq {
       void SetCallback(const TransportCallback &);
       virtual bool IsNull() const { return false; }
     protected:
+    TSQueue<TransportEvent> m_ts_events; ///< A thread-safe buffer to queue up events until they are handled
       std::queue<TransportEvent> m_events; ///< A buffer to queue up events until they are handled
       TransportCallback m_callback; ///< The callback function to invoke on a transport event
       Mutex m_mutex;
