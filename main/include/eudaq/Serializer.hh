@@ -53,12 +53,7 @@ namespace eudaq {
       static writer GetFunc(bool * ) { return write_char; }
       static writer GetFunc(uint8_t * ) { return write_char; }
       static writer GetFunc(int8_t *  ) { return write_char; }
-      static writer GetFunc(uint16_t *) { return write_int; }
-      static writer GetFunc(int16_t * ) { return write_int; }
-      static writer GetFunc(uint32_t *) { return write_int; }
-      static writer GetFunc(int32_t * ) { return write_int; }
-      static writer GetFunc(uint64_t *) { return write_int; }
-      static writer GetFunc(int64_t * ) { return write_int; }
+      static writer GetFunc(...) { return write_int; }
 
       static void write_ser(Serializer & sr, const T & v) {
         v.Serialize(sr);
@@ -208,12 +203,7 @@ namespace eudaq {
       static reader GetFunc(bool * ) { return read_char; }
       static reader GetFunc(uint8_t * ) { return read_char; }
       static reader GetFunc(int8_t *  ) { return read_char; }
-      static reader GetFunc(uint16_t *) { return read_int; }
-      static reader GetFunc(int16_t * ) { return read_int; }
-      static reader GetFunc(uint32_t *) { return read_int; }
-      static reader GetFunc(int32_t * ) { return read_int; }
-      static reader GetFunc(uint64_t *) { return read_int; }
-      static reader GetFunc(int64_t * ) { return read_int; }
+      static reader GetFunc(...) { return read_int; }
 
       static T read_ser(Deserializer & ds) {
         return T(ds);
@@ -247,10 +237,9 @@ namespace eudaq {
         return *(float *)&t;
       }
       static double read_double(Deserializer & ds) {
-        union { double d; unsigned long long i; unsigned char b[sizeof (double)]; } u;
-        //unsigned char buf[sizeof (double)];
+        union { double d; uint64_t i; unsigned char b[sizeof (double)]; } u;
         ds.Deserialize(u.b, sizeof u.b);
-        unsigned long long t = 0;
+        uint64_t t = 0;
         for (size_t i = 0; i < sizeof t; ++i) {
           t <<= 8;
           t += u.b[sizeof t - 1 - i];
