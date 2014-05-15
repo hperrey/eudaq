@@ -3,10 +3,6 @@
 
 #include <cmath>
 
-#ifdef __CINT__
-#include <Windows4Root.h>
-#endif
-
 //ROOT includes
 #include <TSystem.h>
 #include <TInterpreter.h>

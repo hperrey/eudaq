@@ -7,7 +7,7 @@
 #endif
 
 #ifndef __CINT__
-#include <winsock2.h>
+#include <winsock.h>
 #else
 #include <Windows4Root.h>
 #endif
