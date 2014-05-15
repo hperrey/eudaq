@@ -6,18 +6,13 @@
 #define EWOULDBLOCK WSAEWOULDBLOCK
 #endif
 
-#ifdef __CINT__
-#include <Windows4Root.h>
+#ifndef __CINT__
+#include <winsock2.h>
 #else
-#include <winsock.h>
+#include <Windows4Root.h>
 #endif
 
 #include <map>
-#if EUDAQ_PLATFORM_IS(MINGW)
-#  include <windows.h>
-#else
-//#  include <afxwin.h>
-#endif
 
 namespace eudaq {
 

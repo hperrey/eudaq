@@ -20,7 +20,7 @@ typedef int int32_t
 
 #ifdef WIN32
 #ifndef __CINT__
-# include <winsock2.h>
+#include <winsock2.h>
 #endif
 #else
 # include <sys/time.h>

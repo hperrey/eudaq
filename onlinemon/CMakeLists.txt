@@ -29,6 +29,9 @@ SET (OnlineMon_SOURCES
 set(OnlineMon_HEADERS 
   OnlineMonWindow.hh
   SimpleStandardHit.hh
+  SimpleStandardCluster.hh
+  SimpleStandardPlane.hh
+  OnlineMonConfiguration.hh
   CheckEOF.hh
 )
 
