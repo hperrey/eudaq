@@ -5,7 +5,9 @@
 #include "eudaq/Platform.hh"
 
 #if EUDAQ_PLATFORM_IS(WIN32) || EUDAQ_PLATFORM_IS(MINGW)
+#ifndef __CINT__
 # include <winsock2.h>
+#endif
 #else
 # include <sys/select.h>
 typedef int SOCKET;

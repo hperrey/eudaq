@@ -14,7 +14,16 @@
 #include <fstream>
 #include <sys/types.h>
 #include "eudaq/Platform.hh"
+
+#if ((defined WIN32) && (defined __CINT__))
+#include <Windows4Root.h>
+typedef unsigned long long uint64_t
+typedef long long int64_t
+typedef unsigned int uint32_t
+typedef int int32_t
+#else
 #include <cstdint>
+#endif
 
 namespace eudaq {
 

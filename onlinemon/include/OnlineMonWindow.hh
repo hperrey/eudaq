@@ -1,6 +1,7 @@
 #ifndef ONLINE_MON_WINDOW_H
 #define ONLINE_MON_WINDOW_H
 
+#include <Windows4Root.h>
 #include <TGFrame.h>
 
 

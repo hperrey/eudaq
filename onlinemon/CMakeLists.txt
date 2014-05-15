@@ -27,7 +27,8 @@ SET (OnlineMon_SOURCES
 
 # fill list of header files 
 set(OnlineMon_HEADERS 
-  OnlineMonWindow.hh 
+  OnlineMonWindow.hh
+  SimpleStandardHit.hh
   CheckEOF.hh
 )
 

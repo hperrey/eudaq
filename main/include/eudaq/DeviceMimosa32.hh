@@ -3,11 +3,11 @@
 #include <string.h> // string function definitions
 
 #ifdef WIN32
-
+#ifndef __CINT__
 #include <winsock2.h>
 #include <WS2tcpip.h>
 #include <io.h>
-
+#endif
 #else
 
 #include <unistd.h> // UNIX standard function definitions

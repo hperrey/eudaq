@@ -1,3 +1,4 @@
+#include <Windows4Root.h>
 // ROOT includes
 #include "TROOT.h"
 #include "TNamed.h"

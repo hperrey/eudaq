@@ -7,13 +7,21 @@
 #include <iomanip>
 #include <string>
 #include <cstring>
+
+#if ((defined WIN32) && (defined __CINT__))
+#include <Windows4Root.h>
+typedef unsigned long long uint64_t
+typedef long long int64_t
+typedef unsigned int uint32_t
+typedef int int32_t
+#else
 #include <cstdint>
+#endif
 
 #ifdef WIN32
-//# include <time.h>
-//# include <afxwin.h>
+#ifndef __CINT__
 # include <winsock2.h>
-
+#endif
 #else
 # include <sys/time.h>
 #endif
